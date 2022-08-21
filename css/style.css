@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    color: white;
+    background-color: #202124;
+}
+
+.title-temp {
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    display: flex;
+    /* gap: 20px; */
+    background-color: red;
+    width: 40em;
+}
+
+#forcasts {
+    display: flex;
+    align-items: center;
+}
