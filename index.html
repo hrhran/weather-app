@@ -6,89 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <div class="container">
         <div class="card">
-            <div class="title">
-                <div class="title-temp">
-                    <img id="title-weather" alt="loading...">
-                    <h1 id="title-temperature"></h1>
-                </div>
-                <div class="title-data">
-                    <p>Pressure: <span id="data-pressure"></span><p>
-                    <p>Humidity: <span id="data-humidity"></span><p>
-                    <p>Wind: <span id="data-wind"></span><p></p>
-                </div>
-                <div class="city-info">
-                    <h2 id="city"></h2>
-                    <h3 id="day"></h3>
-                    <h4 id="desc"></h4>
-                </div>
+            <div class="class-control">
+                <input id="search" class="search" type="text" />
+                <button class="search-btn" onclick="getData()"><i class="fa fa-search"></i></button>
             </div>
-            <div id="data"></div>
+            <div class="card-data">
+                <div class="title">
+                    <div class="title-main">
+                        <div class="title-temp">
+                            <img id="title-weather" alt="loading...">
+                            <div class="title-temp__degree"><h1 id="title-temperature"></h1><span>&#176;C</span></div>
+                        </div>
+                        <div class="title-data">
+                            <p>Pressure: <span id="data-pressure"></span><p>
+                            <p>Humidity: <span id="data-humidity"></span><p>
+                            <p>Wind: <span id="data-wind"></span><p></p>
+                        </div>
+                    </div>
+                    <div class="city-info">
+                        <h2 id="city"></h2>
+                        <h3 id="day"></h3>
+                        <h4 id="desc"></h4>
+                    </div>
+                </div>
+                <div id="data"></div>               
+            </div>
         </div>
     </div>
-    <script>
-
-        const weatherTable = {
-            "Rain": "https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png",
-            "Clouds": "https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png",
-            "Thunderstorm": "https://ssl.gstatic.com/onebox/weather/64/thunderstorms.png",
-            "Snow": "https://ssl.gstatic.com/onebox/weather/64/snow.png"
-        }
-
-        const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-
-        const returnDay = time => {
-            return days[new Date(time*1000).getDay()]
-        }
-
-        const kelvinToCelcius = temp => {
-            return  Math.ceil(temp - 273.15)
-        }
-
-        const capitalize = string => {
-            return string.charAt(0).toUpperCase() + string.slice(1);
-        }
-
-
-        const getData = async () => {
-            const res = await fetch("https://api.openweathermap.org/data/2.5/forecast?q=chennai&appid=f639d5ec4ff12520a89c39d2bca2138d")
-            const daily = await res.json()
-            const today = daily.list[0]
-            console.log(daily)
-            const city = daily.city
-            console.log(weatherTable[today.weather[0].main])
-            document.getElementById("title-weather").src = weatherTable[today.weather[0].main]
-            document.getElementById("title-temperature").innerHTML = kelvinToCelcius(today.main.temp)
-            document.getElementById("data-pressure").innerHTML = today.main.pressure + " mbar"
-            document.getElementById("data-humidity").innerHTML = today.main.humidity + " %"
-            document.getElementById("data-wind").innerHTML = (today.wind.speed*1.6).toFixed(2) + " km/h"
-            document.getElementById("city").innerHTML = city.name + ", " + city.country
-            document.getElementById("day").innerHTML = returnDay(1660910400);
-            document.getElementById("desc").innerHTML = capitalize(today.weather[0].description)
-            for(let i=0;i<=40;i=i+8){
-                console.log(daily.list[i].weather[0].main)
-                document.getElementById("data").innerHTML += `
-                    <div class="forcast">
-                        <div>
-                            <div class="forcast-day">${returnDay(daily.list[i].dt).substring(0,3)}<div>
-                            <img class="forcast-img" src="${weatherTable[daily.list[i].weather[0].main]}" />
-                            <div class="forcast-temp">
-                                <p class="temp-max">${kelvinToCelcius(daily.list[i].main.temp_max)}</p>
-                                <p class="temp-min">${kelvinToCelcius(daily.list[i].main.temp_min)}</p>
-                            </div>
-                            
-                        <div>`
-            }
-            // ${JSON.stringify(daily.list[i])}
-            // daily.list.forEach((day) => console.log(day))
-        }
-
-        getData()
-        // document.getElementById("data").innerHTML = getData()
-        
-    </script>
+    
 </body>
+<script src="js/app.js" ></script>
 </html>
