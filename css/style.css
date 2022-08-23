@@ -1,6 +1,6 @@
 /* Variables */
 
-:root{
+:root {
     /* BG colours */
     --background-grey: #202124;
     --background-light-grey: #787878;
@@ -8,7 +8,7 @@
 
     /* Font Colours */
     --color-white: #ffffff;
-    --color-grey:#9AA0A6;
+    --color-grey: #9AA0A6;
 }
 
 /* Global */
@@ -36,11 +36,11 @@ img {
 
 /* ----- */
 
-.class-control{ 
+.class-control {
     display: flex;
     width: 100%;
     height: 30px;
-    margin: 25px;
+    position: relative;
 }
 
 .search {
@@ -52,11 +52,33 @@ img {
     outline: none;
 }
 
-.container {
-    width: 80%;
+.sug-box {
+    background-color: rgb(49, 49, 49);
+    position: absolute;
+    top: 100%;
+    width: 100%;
+
 }
 
-.search:hover{
+li {
+    padding: .7em;
+    list-style-type: none;
+    font-size: .75rem;
+    cursor: pointer;
+}
+
+li:hover{
+    background-color: #3b3b3b;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search:hover {
     border: none;
     outline: none;
 }
@@ -69,7 +91,9 @@ img {
 }
 
 .card {
-    height: 500px;  
+    padding: 1em;
+    height: 500px;
+    width: 80%;
 }
 
 .card-data {
@@ -81,15 +105,15 @@ img {
 .title {
     display: flex;
     justify-content: space-between;
-    margin: 25px;
     width: 100%;
+    padding: 1em;
 }
 
 
 .title-main {
+    width: 40%;
     display: flex;
     align-items: center;
-    width: 40%;
     justify-content: space-between;
 }
 
@@ -103,11 +127,20 @@ img {
 }
 
 .title-data {
+    display: block;
     font-size: 0.8em;
     color: #9AA0A6;
 }
 
-#day, #desc {
+.city-info{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#day,
+#desc {
     color: var(--color-grey);
     font-weight: 300;
 }
@@ -116,6 +149,11 @@ img {
     display: flex;
     justify-content: space-between;
     margin: 25px;
+}
+
+#error {
+    color: rgb(194, 48, 48);
+    margin: 10px 15px;
 }
 
 .forcast {
@@ -135,6 +173,23 @@ img {
     color: var(--color-grey);
 }
 
-.title-temp__degree{
+.title-temp__degree {
     display: flex;
 }
+
+
+/* Media queries */
+
+@media only screen and (max-width: 850px) {
+    .title-main{
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  
+@media only screen and (max-width: 450px) {
+    .card{
+        width: 100%;
+    }
+  }

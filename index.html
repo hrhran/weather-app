@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,24 +9,33 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
     <div class="container">
         <div class="card">
-            <div class="class-control">
-                <input id="search" class="search" type="text" />
-                <button class="search-btn" onclick="getData()"><i class="fa fa-search"></i></button>
-            </div>
+            <form class="class-control" id="form">
+                    <input id="search" class="search" type="text" autofocus autocomplete="off" />
+                    
+                <div class="sug-box">
+                    <div id="sug"></div>
+                </div>
+                <button type="submit" class="search-btn"><i class="fa fa-search"></i>
+                </button>
+            </form>
+            <div id="error"></div>
             <div class="card-data">
                 <div class="title">
                     <div class="title-main">
                         <div class="title-temp">
                             <img id="title-weather" alt="loading...">
-                            <div class="title-temp__degree"><h1 id="title-temperature"></h1><span>&#176;C</span></div>
+                            <div class="title-temp__degree">
+                                <h1 id="title-temperature"></h1><span>&#176;C</span>
+                            </div>
                         </div>
                         <div class="title-data">
-                            <p>Pressure: <span id="data-pressure"></span><p>
-                            <p>Humidity: <span id="data-humidity"></span><p>
-                            <p>Wind: <span id="data-wind"></span><p></p>
+                            <p>Pressure: <span id="data-pressure"></span></p>
+                            <p>Humidity: <span id="data-humidity"></span></p>
+                            <p>Wind: <span id="data-wind"></span></p>
                         </div>
                     </div>
                     <div class="city-info">
@@ -34,11 +44,20 @@
                         <h4 id="desc"></h4>
                     </div>
                 </div>
-                <div id="data"></div>               
+                <canvas id="chart" width="500" height="80"></canvas>
+                <div id="data"></div>
             </div>
         </div>
     </div>
-    
+
+    <div id="store"></div>
+
 </body>
-<script src="js/app.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"
+    integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="js/constants.js"></script>
+<script src="js/helpers.js"></script>
+<script src="js/app.js"></script>
+
 </html>
